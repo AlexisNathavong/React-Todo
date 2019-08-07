@@ -1,29 +1,29 @@
 import React from 'react';
 import ToDoList from './components/TodoComponents/TodoList';
 import ToDoForm from './components/TodoComponents/TodoForm';
-
+import './components/TodoComponents/Todo.css';
 
 const todoData = [
   {
     task: 'Vaccuum House',
     id: 123,
-    purchased: false
+    completed: false
   },
   {
     task: 'Clean Bathroom',
     id: 124,
-    purchased: false
+    completed: false
   },
   {
     task: 'Wash Dishes',
     id: 1235,
-    purchased: false
+    completed: false
 
   },
   {
     task: 'Laundry',
     id: 1246,
-    purchased: false
+    completed: false
   }
 ];
 
@@ -48,7 +48,7 @@ class App extends React.Component {
         if (item.id === id) {
           return {
             ...item,
-            purchased: !item.purchased
+            completed: !item.completed
           };
         } else {
           return item;
@@ -61,16 +61,16 @@ class App extends React.Component {
     const newItem = {
       name: itemName,
       id: Date.now(),
-      purchased: false
+      completed: false
     };
     this.setState({
       todo: [...this.state.todo, newItem]
     });
   };
 
-  clearPurchased = () => {
+  clearCompleted = () => {
     this.setState({
-      todo: this.state.todo.filter(item => !item.purchased)
+      todo: this.state.todo.filter(item => !item.completed)
 
     });
   };
@@ -85,6 +85,7 @@ class App extends React.Component {
         <ToDoList
           todo={this.state.todo}
           toggleItem={this.toggleItem}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
